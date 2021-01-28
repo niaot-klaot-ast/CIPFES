@@ -61,9 +61,8 @@ for h in range(len(filename)):
     g_line_list = g['line_list']
     #0order, 1line_center, 2wav, 3type
     g_orders = np.unique(g_line_list[:,0]).astype(int)
-    thar_bleed_mask = pickle.load(open(filename[h][2], "rb"))
-    left_edge = int(thar_bleed_mask['x_left_edge'])
-    right_edge = int(thar_bleed_mask['x_right_edge'])
+    left_edge = 50
+    right_edge = 4049
     xind = np.arange(left_edge, right_edge+1)
     
     # obtain the accurate line-centers of the "initial guess" line list by Gaussian fit
@@ -565,25 +564,13 @@ for i in range(len(chunk)):
     
     ax1 = plt.Axes(fig, [subfig_left[flag1%3], subfig_bottom[flag1//3], 0.25, 0.13])
     fig.add_axes(ax1)
-    fig2, ax2 = plt.subplots()
     ax1.errorbar(x1[mask1], y1[mask1], yerr=s1[mask1], fmt='r.', ms=6, zorder=0, alpha=0.5)
     ax1.errorbar(x2, y2, yerr=s2, fmt='.', color='lightblue', ms=6, zorder=1, alpha=0.3)
-    ax2.errorbar(x1[mask1], y1[mask1], yerr=s1[mask1], fmt='r.', ms=6, zorder=0, alpha=0.5)
-    ax2.errorbar(x2, y2, yerr=s2, fmt='.', color='lightblue', ms=6, zorder=1, alpha=0.3)
         
     tck1 = (KNS, splines2.get_coeffs(), deg2)
     ax1.plot(np.linspace(xb, xe, 1000), splev(np.linspace(xb, xe, 1000), tck1), color='g', label=f'{int(chunk[i,0])}', zorder=10, lw=3)
     ax1.set_ylim([-0.1, 0.1])
     ax1.set_title(f'x={int(chunk[i,0])}', ha='center', va='center', fontsize=12)
-        
-    ax2.plot(np.linspace(xb, xe, 1000), splev(np.linspace(xb, xe, 1000), tck1), color='g', label=f'{int(chunk[i,0])}', zorder=10, lw=3)
-    ax2.set_ylim([-0.1, 0.1])
-    ax2.set_title(f'x={int(chunk[i,0])}', ha='center', va='center', fontsize=14)
-    ax2.set_xlabel("x' (pixel position relative to the IP center)", va='top', fontsize=14)
-    ax2.set_ylabel('normalized residuals', va='bottom', ha='center', fontsize=14)
-    ax2.tick_params(which='major', labelsize=12)
-    fig2.set_size_inches(8.0, 6.0)
-    fig2.savefig(f'zn{chunk[i,1]:.2f}_{int(chunk[i,0])}.png', dpi=100)
 
     flag1 = flag1 + 1
 
@@ -625,7 +612,6 @@ for i in range(len(ypt1)):
     for j in range(len(xpt1)):
         COEFFST1[i,j] = tck_coeffs_farray[0](xpt1[j], ypt1[i])
 plt.imshow(COEFFST1, extent=(xpt1[0], xpt1[-1], ypt1[0], ypt1[-1]), origin='lower', aspect=40)
-plt.show()
     
     
 psf = {}

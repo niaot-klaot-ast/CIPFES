@@ -111,9 +111,8 @@ for h in range(len(filename)):
     g_line_list = g['line_list']
     # 0order, 1line_center, 2wav, 3type
     g_orders = np.unique(g_line_list[:,0]).astype(int)
-    thar_bleed_mask = pickle.load(open(filename[h][2], "rb"))
-    left_edge = int(thar_bleed_mask['x_left_edge'])
-    right_edge = int(thar_bleed_mask['x_right_edge'])
+    left_edge = 50
+    right_edge = 4049
     xind = np.arange(left_edge, right_edge+1)
     
     # obtain the accurate line-centers of the "initial guess" line list by Gaussian fit
@@ -398,4 +397,3 @@ for i in range(N_cheby+1):
     print (i, np.average(abs(y4[mask2d])), np.average(abs(res4)), len(y4[mask2d])/len(y4))
 cheby['x'] = xIP
 pickle.dump(cheby, open('IP_20170922_cheby.p', "wb"))
-plt.show()
