@@ -9,7 +9,6 @@ IP_accuracy_gh_mc.py: determine the IP-characterization accuracy of the Gauss-He
 IP_accuracy_cheby_mc.py: determine the IP-characterization accuracy of the discrete Chebyshev polynomial model.
 IP_accuracy_sg_mc.py: determine the IP-characterization accuracy of the super Gaussian model.
 ThAr_line_width_histogram.py: show the histogram of the intrinsic widths of ThAr emission lines.
-longrange_systematic.py: show the difference between the Gaussian-fit center and the centroid of IP
 
 a201709220022.fits-a201709220025.fits: the 1D spectra of four sequential ThAr exposures on the Fiber-fed Echelle Spectrograph (HRS) of Chinese Xinglong 2.16m Telescope on September 22, 2017.
 a201709220026.fits: the 1D spectrum of an astro-comb exposure on HRS.

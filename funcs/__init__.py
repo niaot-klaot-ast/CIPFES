@@ -343,10 +343,7 @@ def cheby(x, p, N):
         
 def cheby_norm(p, N):
     return np.sqrt((cheby(np.arange(N), p, N) * cheby(np.arange(N), p, N)).sum())
-def l(x):
-    return 1.4*x
-def ll(x):
-    return 1.4*(-0.02+x)
+
 def cheby_nd(x, p, N):
     """
     This function is the normalized discrete Chebyshev polynomial
